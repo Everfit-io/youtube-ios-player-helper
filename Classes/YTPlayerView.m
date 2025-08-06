@@ -562,7 +562,9 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
 
 - (NSURL *)originURL {
   if (!_originURL) {
-    _originURL = [NSURL URLWithString: @"https://www.youtube.com"];
+    NSString *bundleId = [[NSBundle mainBundle] bundleIdentifier];
+    NSString *stringURL = [[NSString stringWithFormat:@"http://%@", bundleId] lowercaseString];
+    _originURL = [NSURL URLWithString:stringURL];
   }
   return _originURL;
 }
